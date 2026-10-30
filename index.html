@@ -10,8 +10,8 @@
 <style>
 /* Customer-facing colour library: filters on top, swatch grid, tap opens a 3D preview in two lights. */
 :root{
-  --bg:#F6F4FA; --surface:#FFFFFF; --sunk:#EEEBF5; --ink:#24222F; --muted:#67637A; --line:#E0DCEA;
-  --band-bg:linear-gradient(110deg,#CDEDE2 0%,#DCD8F6 52%,#FADDE6 100%); --band:#D3EEE5; --band-ink:#25223A; --band-muted:#5C5878; --brand-hi:#D0605A;
+  --bg:#F1E9DC; --surface:#FAF6EF; --sunk:#E9DFD0; --ink:#2A251F; --muted:#6D6457; --line:#DDD1BE;
+  --band-bg:#F8CFA9; --band:#F8CFA9; --band-ink:#3A2416; --band-muted:#6B4632; --brand-hi:#B8452C;
   --accent:#2F8670; --accent-ink:#FFFFFF; --accent-soft:#DCF1EA; --peach:#F6B98F; --peach-ink:#3A1F0C;
   --in:#23854F; --limited:#C25A10; --order:#7046B0;
   --f-display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
@@ -20,12 +20,12 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#15141C; --surface:#1E1D28; --sunk:#111017; --ink:#EDEAF6; --muted:#A7A2BE; --line:#302E40;
-  --band-bg:linear-gradient(110deg,#203A36 0%,#2B2846 52%,#40293A 100%); --band:#203A36; --band-ink:#F1EEFB; --band-muted:#BDB7D6; --brand-hi:#F6B98F;
+  --band-bg:#E3AFC0; --band:#E3AFC0; --band-ink:#2E1822; --band-muted:#5C3646; --brand-hi:#9B2F52;
   --accent:#8ED9C1; --accent-ink:#0D1A16; --accent-soft:#1F3A33; --peach:#F6BC93; --peach-ink:#2B1708;
   --in:#7FDCA0; --limited:#F6B07D; --order:#C9B3F5; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#15141C; --surface:#1E1D28; --sunk:#111017; --ink:#EDEAF6; --muted:#A7A2BE; --line:#302E40;
-  --band-bg:linear-gradient(110deg,#203A36 0%,#2B2846 52%,#40293A 100%); --band:#203A36; --band-ink:#F1EEFB; --band-muted:#BDB7D6; --brand-hi:#F6B98F;
+  --band-bg:#E3AFC0; --band:#E3AFC0; --band-ink:#2E1822; --band-muted:#5C3646; --brand-hi:#9B2F52;
   --accent:#8ED9C1; --accent-ink:#0D1A16; --accent-soft:#1F3A33; --peach:#F6BC93; --peach-ink:#2B1708;
   --in:#7FDCA0; --limited:#F6B07D; --order:#C9B3F5; color-scheme:dark}
 *{box-sizing:border-box}
@@ -109,7 +109,7 @@ button,input{font:inherit;color:inherit}
 <body>
 <header class="top"><div class="wrap">
   <div class="brandrow"><div class="brand">3Dx<b>Dor</b> <span id="t-title">Colours &amp; Materials</span></div>
-    <div class="tbtns"><button class="tb" id="langbtn">עברית</button><button class="tb" id="themebtn">Auto</button></div></div>
+    <div class="tbtns"><button class="tb" id="langbtn">עברית</button><button class="tb" id="themebtn" aria-label="Dark mode">☾</button></div></div>
   <p class="lede" id="t-lede"></p>
 </div></header>
 <div class="controls"><div class="wrap">
@@ -154,7 +154,7 @@ var T={
   fams:{white:'לבן',grey:'אפור',black:'שחור',red:'אדום',orange:'כתום',yellow:'צהוב',green:'ירוק',blue:'כחול',purple:'סגול',pink:'ורוד',brown:'חום',beige:'בז\''}}
 };
 function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
-var S={items:[],lang:store('sw.lang')||'en',theme:store('sw.theme')||'auto',type:'',fin:'',fam:'',instock:false,q:'',picks:[],open:null,fuzzy:false,ribbed:false};
+var S={items:[],lang:store('sw.lang')||'en',theme:(function(t){ return t==='light'||t==='dark'?t:(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'); })(store('sw.theme')),type:'',fin:'',fam:'',instock:false,q:'',picks:[],open:null,fuzzy:false,ribbed:false};
 try{ S.picks=JSON.parse(store('sw.picks')||'[]')||[]; }catch(e){ S.picks=[]; }
 function L(){ return T[S.lang]; }
 function $(id){ return document.getElementById(id); }
@@ -175,7 +175,7 @@ function applyLang(){ var l=L(); document.documentElement.lang=S.lang; document.
   $('t-title').textContent=l.title; $('t-lede').textContent=l.lede; $('q').placeholder=l.q; $('langbtn').textContent=S.lang==='he'?'English':'עברית';
   $('t-day').textContent=l.day; $('t-warm').textContent=l.warm; $('fuzzy').textContent=l.fuzzy; $('shape').textContent=l.shape;
   $('pcopy').textContent=l.copy; $('pshare').textContent=l.share; $('pclear').textContent=l.clear; renderChips(); render(); renderPicks(); if(S.open) fillDetail(); }
-function applyTheme(){ if(S.theme==='auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme',S.theme); $('themebtn').textContent=S.theme==='auto'?'Auto':S.theme==='light'?'☀':'☾'; }
+function applyTheme(){ document.documentElement.setAttribute('data-theme',S.theme); var b=$('themebtn'), dk=S.theme==='dark'; b.textContent=dk?'☀':'☾'; b.setAttribute('aria-label',dk?'Light mode':'Dark mode'); b.title=b.getAttribute('aria-label'); }
 function chip(g,v,label,on){ return '<button class="chip" data-g="'+g+'" data-v="'+v+'" aria-pressed="'+on+'">'+esc(label)+'</button>'; }
 function renderChips(){ var l=L();
   $('c-type').innerHTML=chip('type','',l.all,!S.type)+Object.keys(l.types).map(function(k){ return chip('type',k,l.types[k],S.type===k); }).join('')+chip('instock','1',l.instock,S.instock);
@@ -213,7 +213,7 @@ document.addEventListener('click',function(e){
   if(e.target.id==='fuzzy'){ S.fuzzy=!S.fuzzy; fillDetail(); if(window.Preview) window.Preview.show(S.open,S.fuzzy,S.ribbed); return; }
   if(e.target.id==='shape'){ S.ribbed=!S.ribbed; fillDetail(); if(window.Preview) window.Preview.show(S.open,S.fuzzy,S.ribbed); return; }
   if(e.target.id==='langbtn'){ S.lang=S.lang==='he'?'en':'he'; store('sw.lang',S.lang); applyLang(); return; }
-  if(e.target.id==='themebtn'){ S.theme={auto:'light',light:'dark',dark:'auto'}[S.theme]; store('sw.theme',S.theme); applyTheme(); return; }
+  if(e.target.id==='themebtn'){ S.theme=S.theme==='dark'?'light':'dark'; store('sw.theme',S.theme); applyTheme(); return; }
   if(e.target.id==='pclear'){ S.picks=[]; savePicks(); return; }
   if(e.target.id==='pcopy'){ var t=pickText(); (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){ toast(L().copied); },function(){ window.prompt('',t); }); return; }
   if(e.target.id==='pshare'){ var tx=pickText(); if(navigator.share) navigator.share({text:tx}).catch(function(){}); else window.open('https://wa.me/?text='+encodeURIComponent(tx),'_blank','noopener'); return; }

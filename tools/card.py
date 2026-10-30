@@ -99,12 +99,12 @@ html = '''<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><
 @page{size:A4;margin:11mm 10mm 13mm}
 *{box-sizing:border-box}
 body{margin:0;font-family:Heebo,sans-serif;color:#24222F;font-size:8.2pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-header{display:flex;align-items:center;gap:6mm;padding:5mm 6mm;border-radius:4mm;background:linear-gradient(110deg,#CDEDE2 0%%,#DCD8F6 52%%,#FADDE6 100%%);margin-bottom:4mm}
+header{display:flex;align-items:center;gap:6mm;padding:5mm 6mm;border-radius:4mm;background:#F8CFA9;margin-bottom:4mm}
 header .t{flex:1}
 h1{margin:0;font-size:20pt;font-weight:700;line-height:1.1}
-h1 b{color:#D0605A} h1 .en{direction:ltr;unicode-bidi:isolate}
-header p{margin:1.5mm 0 0;font-size:9pt;color:#4C4868;line-height:1.35}
-.qr{width:40mm;flex:none;text-align:center;font-size:6.6pt;color:#4C4868;white-space:nowrap}
+h1 b{color:#B8452C} h1 .en{direction:ltr;unicode-bidi:isolate}
+header p{margin:1.5mm 0 0;font-size:9pt;color:#6B4632;line-height:1.35}
+.qr{width:40mm;flex:none;text-align:center;font-size:6.6pt;color:#6B4632;white-space:nowrap}
 .qr svg{width:24mm;height:24mm;display:block;margin:0 auto 1mm;background:#fff;padding:1.5mm;border-radius:2mm}
 .meta{display:flex;gap:5mm;flex-wrap:wrap;align-items:center;margin:0 0 3mm;font-size:8pt;color:#67637A}
 .meta i{display:inline-block;width:2.4mm;height:2.4mm;border-radius:50%%;margin-inline-end:1.2mm;vertical-align:middle}
