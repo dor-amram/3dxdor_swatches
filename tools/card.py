@@ -78,16 +78,18 @@ def qr_svg():
 
 def cell(it):
     av, col = AV[it['avail']]
-    sub = it['type'] + (' · ' + it['fin'] if it.get('fin') else '')
-    return ('<div class="c"><div class="sw" style="%s"></div><div class="nm" dir="ltr">%s</div>'
-            '<div class="mt" dir="ltr">%s</div><div class="av" style="color:%s">%s</div></div>') % (
-        swatch_style(it), esc(it['name']), esc(sub), col, av)
+    sub = it.get('type_he') or it['type']
+    fin = it.get('fin_he') or it.get('fin')
+    if fin: sub += ' · ' + fin
+    return ('<div class="c"><div class="sw" style="%s"></div><div class="nm">%s</div>'
+            '<div class="mt">%s</div><div class="av" style="color:%s">%s</div></div>') % (
+        swatch_style(it), esc(it.get('name_he') or it['name']), ' · '.join('<bdi>%s</bdi>' % esc(x) for x in sub.split(' · ')), col, av)
 
 sections = ''
 for key, title in GROUPS:
     grp = [i for i in items if type_group(i['type']) == key]
     if not grp: continue
-    grp.sort(key=lambda i: (FAM_ORDER.index(family(i)), i['name'].lower(), i['type'], i.get('fin') or ''))
+    grp.sort(key=lambda i: (FAM_ORDER.index(family(i)), i.get('name_he') or i['name'].lower(), i['type'], i.get('fin') or ''))
     sections += '<section><h2><bdi>%s</bdi> <span>(%d צבעים)</span></h2><div class="g">%s</div></section>' % (esc(title), len(grp), ''.join(cell(i) for i in grp))
 
 y, m, d = data['updated'].split('-')

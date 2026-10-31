@@ -5,7 +5,7 @@ Public colour library for 3DxDor customers: the filaments and resins currently o
 - `index.html` — the page (static, no build step; three.js 0.165.0 from jsDelivr).
 - `swatches.json` — the colour list. Generated from the 3DxDor Management Hub; contains no brands, costs, quantities or sources.
 
-To update: regenerate `swatches.json` from the Hub and commit it. GitHub Pages serves `main` from the repository root.
+To update: regenerate `swatches.json` from the Hub and commit it. Hebrew colour/finish names come from `tools/he.json`; the generator lists any new name missing a translation. GitHub Pages serves `main` from the repository root.
 
 ## Colour card (PDF)
 
