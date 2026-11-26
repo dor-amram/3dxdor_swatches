@@ -16,13 +16,13 @@ for x in json.load(open('ext/bbl_colors.json'))['data']:
     cands['bambulab'].append(dict(src='BambuStudio',material=x['fila_type'],name=x['fila_type']+' '+x['fila_color_name']['en'],color=x['fila_color_name']['en'],
         hex=cols[0],hexes=cols if len(cols)>1 else None,multi={'渐变色':'gradient','多拼色':'coaxial'}.get(x['fila_color_type']),bbl=True))
 def score(it,c):
-    col=norm(it.get('color')); cc=norm(c['color'])
+    col=norm(it.get('color')); mtw=set(norm((it.get('type') or '')+' '+(it.get('sub') or ''))); cc=[t for t in norm(c['color']) if t not in mtw] or norm(c['color'])
     if not col or not cc: return 0,''
     exact=col==cc
     r=difflib.SequenceMatcher(None,' '.join(col),' '.join(cc)).ratio()
     mt=set(norm((it.get('type') or '')+' '+(it.get('sub') or ''))); cm=set(norm(c['material']+' '+c['name']))-set(cc)
     mat=len(mt&cm)/max(1,len(mt))
-    base=norm(it.get('type'))[:1]; fam=bool(base) and base[0] in cm
+    base=norm(it.get('type'))[:1]; fam=bool(base) and any(t==base[0] or t.startswith(base[0]) for t in cm)
     s=(2 if exact else r)+mat
     return s,('exact' if exact else 'fuzzy'),mat,fam
 out={}; stat=collections.Counter()

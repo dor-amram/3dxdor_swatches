@@ -22,6 +22,10 @@ for(const kind of ['fdm','resin']) for(const f of fs.readdirSync('live/'+kind).s
       finish=m.match.finish||null; pattern=m.match.pattern||null; translucent=!!m.match.translucent; fill=m.match.fill||null; } }
   if(!hexes && /\//.test(color)){ const parts=color.split('/').map(s=>s.trim().toLowerCase().split(/\s+/).pop()); if(parts.every(p=>NAMED[p])) hexes=parts.map(p=>NAMED[p]); }
   if(OV[id]){ hex=OV[id].hex.replace('#',''); if(OV[id].hexes) hexes=OV[id].hexes.map(h=>h.replace('#','')); q='verified'; }
+  // The Hub is the source of truth for colour when it records where the colour came from.
+  // maker / measured / third-party -> product data; manual (Dor's own pick) -> used but labelled approximate; sheet / name / none -> matcher result above.
+  const HS=it.hex_src, clean=h=>String(h).replace('#','').slice(0,6);
+  if(it.hex && ['maker','measured','third-party','manual'].includes(HS)){ hex=clean(it.hex); if(it.hexes&&it.hexes.length>1) hexes=it.hexes.map(clean); /* else keep multi-colour hexes found above */ q=(HS==='manual')?'approx':'verified'; }
   const t=(sub+' '+color+' '+(it.type||'')).toLowerCase();
   let fx='solid';
   if(/\bcf\b|carbon/.test(t)||fill==='carbon fiber') fx='cf';

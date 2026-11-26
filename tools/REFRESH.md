@@ -29,6 +29,8 @@ Hub (private Claude artifact, read with the ArtifactData tool): https://claude.a
 | `tools/swatch_match.py` | Matches Hub items to SpoolmanDB / Bambu Studio colour data (tiers: verified, close, generic, approx) |
 | `tools/swatch_gen.js` | Builds the customer-safe `swatches.json` (no brand, cost, grams, sources); availability; effects; Hebrew labels; privacy scan |
 | `tools/calc.js` | Remaining-filament calculation shared with the Hub |
-| `tools/hex_overrides.json` | Approved colour codes with source URLs |
+| `tools/hex_overrides.json` | Approved colour codes with source URLs (legacy; new approved colours go into the Hub) |
+
+**Colour precedence (in `swatch_gen.js`):** the Hub is the source of truth when it records where a colour came from. Hub `hex_src` maker / measured / third-party → used, labelled "product data". `manual` (Dor's own pick) → used, labelled approximate. `sheet`, `name` or empty → the matcher's result (SpoolmanDB / Bambu Studio / overrides). New approved research results are written into the Hub (`hex`, `hex_src`, `hex_ref`), not only into `hex_overrides.json`.
 | `tools/he.json` | Hebrew colour names, finish labels and material labels |
 | `tools/diff.py` | Change summary between published and new data |
