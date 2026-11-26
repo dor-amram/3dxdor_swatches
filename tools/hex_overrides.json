@@ -1,0 +1,100 @@
+{
+ "f126": {
+  "hex": "#503E2D",
+  "src": "https://github.com/CrealityOfficial/CrealityPrint/blob/main/resources/profiles/Creality/filament/filaments_color.json",
+  "kind": "maker",
+  "note": "Hyper PLA-CF Ochre"
+ },
+ "f047": {
+  "hex": "#BB9575",
+  "src": "https://github.com/CrealityOfficial/CrealityPrint/blob/main/resources/profiles/Creality/filament/filaments_color.json",
+  "kind": "maker",
+  "note": "CR-Wood White Pine"
+ },
+ "f030": {
+  "hex": "#855261",
+  "src": "https://wiki.polymaker.com/polymaker-products/more-about-our-products/hex-codes-and-transmission-distances",
+  "kind": "maker",
+  "note": "Fiberon ASA-CF08 Dark Red FF02007"
+ },
+ "f031": {
+  "hex": "#CEB69C",
+  "src": "https://wiki.polymaker.com/polymaker-products/more-about-our-products/hex-codes-and-transmission-distances",
+  "kind": "maker",
+  "note": "Fiberon ASA-CF08 Desert Sand FF02006"
+ },
+ "f041": {
+  "hex": "#E8D9C3",
+  "src": "https://wiki.polymaker.com/polymaker-products/more-about-our-products/hex-codes-and-transmission-distances",
+  "kind": "maker",
+  "note": "PolySmooth Transparent PJ01011"
+ },
+ "f080": {
+  "hex": "#53504D",
+  "src": "https://filamentcolors.xyz/swatch/amolen-ebony-wood-pla-1491",
+  "kind": "measured",
+  "note": "colorimeter on printed swatch"
+ },
+ "f115": {
+  "hex": "#E2BFC4",
+  "src": "https://filamentcolors.xyz/swatch/1303",
+  "kind": "measured",
+  "note": "Cookiecad Pink Chip"
+ },
+ "f114": {
+  "hex": "#494746",
+  "src": "https://filamentcolors.xyz/swatch/2522",
+  "kind": "measured",
+  "note": "Cookiecad Black Star Stuff"
+ },
+ "f063": {
+  "hex": "#2D2D73",
+  "src": "https://filamentcolors.xyz/swatch/2249",
+  "kind": "measured",
+  "note": "Flashforge Nebula Purple Chameleon (colour-shift; single hex is a compromise)"
+ },
+ "f064": {
+  "hex": "#C2A1B4",
+  "src": "https://filamentcolors.xyz/swatch/4929",
+  "kind": "measured",
+  "note": "Flashforge Rose Quartz (colour-shift)"
+ },
+ "f142": {
+  "hex": "#75787B",
+  "src": "https://wiki.polymaker.com/polymaker-products/more-about-our-products/hex-codes-and-transmission-distances",
+  "kind": "maker",
+  "note": "Fiberon PA6-GF25 Grey FG02001 (Dor: Fiberon label)"
+ },
+ "f061": {
+  "hex": "#8A8C94",
+  "hexes": [
+   "#8A8C94",
+   "#9572BF"
+  ],
+  "src": "https://wiki.polymaker.com/polymaker-products/more-about-our-products/hex-codes-and-transmission-distances",
+  "kind": "maker",
+  "note": "Panchroma Dual Matte Foggy Purple (Grey-Purple) CA04046; coaxial half/half"
+ },
+ "f062": {
+  "hex": "#F4EFEB",
+  "hexes": [
+   "#F4EFEB",
+   "#2F2E30"
+  ],
+  "src": "https://wiki.polymaker.com/polymaker-products/more-about-our-products/hex-codes-and-transmission-distances",
+  "kind": "maker",
+  "note": "Panchroma Dual Matte Shadow Black (White-Black) CA04049; coaxial half/half"
+ },
+ "f077": {
+  "hex": "#A3623C",
+  "src": "https://filascope.com/filament/amolen-pla-pla-wood--walnut-wood--5c5021fb",
+  "kind": "third-party",
+  "note": "FilaScope listing; Dor confirms orange-brown, not Dark Walnut"
+ },
+ "f045": {
+  "hex": "#2F5B5F",
+  "src": "https://filamentcolors.xyz/swatch/1740",
+  "kind": "measured",
+  "note": "Flashforge Burnt Titanium PLA (same colour, PLA not ABS); Dor approved"
+ }
+}
